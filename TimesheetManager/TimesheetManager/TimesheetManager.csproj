@@ -1,0 +1,347 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A3C31003-94D7-45A7-BA18-C6DD8A4275AD}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TimesheetManager</RootNamespace>
+    <AssemblyName>TimesheetManager</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="themes\id_1\css\stylesheet.css" />
+    <Content Include="themes\id_1\images\asset_no_preview.png" />
+    <Content Include="themes\id_1\images\backtop.png" />
+    <Content Include="themes\id_1\images\backtop_hover.png" />
+    <Content Include="themes\id_1\images\bg_body.png" />
+    <Content Include="themes\id_1\images\bg_login.png" />
+    <Content Include="themes\id_1\images\bg_nav.png" />
+    <Content Include="themes\id_1\images\bm_logo.png" />
+    <Content Include="themes\id_1\images\body-bg.jpg" />
+    <Content Include="themes\id_1\images\body_bg.jpg" />
+    <Content Include="themes\id_1\images\body_bg.png" />
+    <Content Include="themes\id_1\images\button_login.png" />
+    <Content Include="themes\id_1\images\button_login_over.png" />
+    <Content Include="themes\id_1\images\button_submit.png" />
+    <Content Include="themes\id_1\images\button_submit_over.png" />
+    <Content Include="themes\id_1\images\favicon.ico" />
+    <Content Include="themes\id_1\images\folder_divider.png" />
+    <Content Include="themes\id_1\images\icon_add.png" />
+    <Content Include="themes\id_1\images\icon_add_comment.png" />
+    <Content Include="themes\id_1\images\icon_add_task.png" />
+    <Content Include="themes\id_1\images\icon_admin.png" />
+    <Content Include="themes\id_1\images\icon_adminfolder.png" />
+    <Content Include="themes\id_1\images\icon_admin_group.png" />
+    <Content Include="themes\id_1\images\icon_admin_user.png" />
+    <Content Include="themes\id_1\images\icon_alert.png" />
+    <Content Include="themes\id_1\images\icon_anchor.png" />
+    <Content Include="themes\id_1\images\icon_arrow_down.png" />
+    <Content Include="themes\id_1\images\icon_arrow_up.png" />
+    <Content Include="themes\id_1\images\icon_asc.png" />
+    <Content Include="themes\id_1\images\icon_asset.png" />
+    <Content Include="themes\id_1\images\icon_asset_library.png" />
+    <Content Include="themes\id_1\images\icon_assign.png" />
+    <Content Include="themes\id_1\images\icon_assign_task.png" />
+    <Content Include="themes\id_1\images\icon_back.png" />
+    <Content Include="themes\id_1\images\icon_backtotop.png" />
+    <Content Include="themes\id_1\images\icon_backtotop_over.png" />
+    <Content Include="themes\id_1\images\icon_back_arrow.png" />
+    <Content Include="themes\id_1\images\icon_breadcrumb_home.png" />
+    <Content Include="themes\id_1\images\icon_corner_slice.png" />
+    <Content Include="themes\id_1\images\icon_cust_sort_add.png" />
+    <Content Include="themes\id_1\images\icon_cust_sort_delete.png" />
+    <Content Include="themes\id_1\images\icon_delete.png" />
+    <Content Include="themes\id_1\images\icon_delete_element.png" />
+    <Content Include="themes\id_1\images\icon_delete_on.png" />
+    <Content Include="themes\id_1\images\icon_desc.png" />
+    <Content Include="themes\id_1\images\icon_deselect_all.png" />
+    <Content Include="themes\id_1\images\icon_document.png" />
+    <Content Include="themes\id_1\images\icon_dots.png" />
+    <Content Include="themes\id_1\images\icon_download.png" />
+    <Content Include="themes\id_1\images\icon_down_arrow.png" />
+    <Content Include="themes\id_1\images\icon_edit.png" />
+    <Content Include="themes\id_1\images\icon_edit_element.png" />
+    <Content Include="themes\id_1\images\icon_edit_task.png" />
+    <Content Include="themes\id_1\images\icon_email.png" />
+    <Content Include="themes\id_1\images\icon_email_hover.png" />
+    <Content Include="themes\id_1\images\icon_filter.png" />
+    <Content Include="themes\id_1\images\icon_filter_asc.png" />
+    <Content Include="themes\id_1\images\icon_filter_desc.png" />
+    <Content Include="themes\id_1\images\icon_filter_detail.png" />
+    <Content Include="themes\id_1\images\icon_filter_list.png" />
+    <Content Include="themes\id_1\images\icon_filter_sortaz.png" />
+    <Content Include="themes\id_1\images\icon_filter_sorttype1.png" />
+    <Content Include="themes\id_1\images\icon_filter_sorttype2.png" />
+    <Content Include="themes\id_1\images\icon_filter_sortza.png" />
+    <Content Include="themes\id_1\images\icon_filter_type1.png" />
+    <Content Include="themes\id_1\images\icon_filter_type2.png" />
+    <Content Include="themes\id_1\images\icon_folder.png" />
+    <Content Include="themes\id_1\images\icon_grid.png" />
+    <Content Include="themes\id_1\images\icon_group.png" />
+    <Content Include="themes\id_1\images\icon_high_priority_task.png" />
+    <Content Include="themes\id_1\images\icon_high_priority_task2.png" />
+    <Content Include="themes\id_1\images\icon_home.png" />
+    <Content Include="themes\id_1\images\icon_indent.png" />
+    <Content Include="themes\id_1\images\icon_lightbox.png" />
+    <Content Include="themes\id_1\images\icon_lightbox_hover.png" />
+    <Content Include="themes\id_1\images\icon_list.png" />
+    <Content Include="themes\id_1\images\icon_loading.gif" />
+    <Content Include="themes\id_1\images\icon_loading.png" />
+    <Content Include="themes\id_1\images\icon_loading_bg.png" />
+    <Content Include="themes\id_1\images\icon_login_password.png" />
+    <Content Include="themes\id_1\images\icon_login_username.png" />
+    <Content Include="themes\id_1\images\icon_mass_update_off.png" />
+    <Content Include="themes\id_1\images\icon_mass_update_on.png" />
+    <Content Include="themes\id_1\images\icon_minus.png" />
+    <Content Include="themes\id_1\images\icon_nav_admin.png" />
+    <Content Include="themes\id_1\images\icon_nav_asset.png" />
+    <Content Include="themes\id_1\images\icon_nav_custom.png" />
+    <Content Include="themes\id_1\images\icon_nav_home.png" />
+    <Content Include="themes\id_1\images\icon_nav_lpm.png" />
+    <Content Include="themes\id_1\images\icon_nav_report.png" />
+    <Content Include="themes\id_1\images\icon_nav_task.png" />
+    <Content Include="themes\id_1\images\icon_nav_timer.png" />
+    <Content Include="themes\id_1\images\icon_nav_timer_over.png" />
+    <Content Include="themes\id_1\images\icon_nav_user.png" />
+    <Content Include="themes\id_1\images\icon_nav_vdm.png" />
+    <Content Include="themes\id_1\images\icon_nav_vdm_OLD.png" />
+    <Content Include="themes\id_1\images\icon_panel_dots.png" />
+    <Content Include="themes\id_1\images\icon_panel_triangle.png" />
+    <Content Include="themes\id_1\images\icon_password.png" />
+    <Content Include="themes\id_1\images\icon_pdf.png" />
+    <Content Include="themes\id_1\images\icon_plus.png" />
+    <Content Include="themes\id_1\images\icon_profile.png" />
+    <Content Include="themes\id_1\images\icon_refresh.png" />
+    <Content Include="themes\id_1\images\icon_reports.png" />
+    <Content Include="themes\id_1\images\icon_search.png" />
+    <Content Include="themes\id_1\images\icon_search_hover.png" />
+    <Content Include="themes\id_1\images\icon_selected_edit.png" />
+    <Content Include="themes\id_1\images\icon_select_all.png" />
+    <Content Include="themes\id_1\images\icon_sortaz.png" />
+    <Content Include="themes\id_1\images\icon_sortza.png" />
+    <Content Include="themes\id_1\images\icon_sort_down.png" />
+    <Content Include="themes\id_1\images\icon_sort_up.png" />
+    <Content Include="themes\id_1\images\icon_stop_timer.png" />
+    <Content Include="themes\id_1\images\icon_stop_timer_over.png" />
+    <Content Include="themes\id_1\images\icon_tasks.png" />
+    <Content Include="themes\id_1\images\icon_task_delete.png" />
+    <Content Include="themes\id_1\images\icon_task_download.png" />
+    <Content Include="themes\id_1\images\icon_timer.png" />
+    <Content Include="themes\id_1\images\icon_timer_off.png" />
+    <Content Include="themes\id_1\images\icon_timer_off_task.png" />
+    <Content Include="themes\id_1\images\icon_timer_on.png" />
+    <Content Include="themes\id_1\images\icon_timer_on_task.png" />
+    <Content Include="themes\id_1\images\icon_timer_task.png" />
+    <Content Include="themes\id_1\images\icon_type.png" />
+    <Content Include="themes\id_1\images\icon_type1.png" />
+    <Content Include="themes\id_1\images\icon_type2.png" />
+    <Content Include="themes\id_1\images\icon_upload.png" />
+    <Content Include="themes\id_1\images\icon_up_arrow.png" />
+    <Content Include="themes\id_1\images\icon_urgent_task.png" />
+    <Content Include="themes\id_1\images\icon_urgent_task_large.png" />
+    <Content Include="themes\id_1\images\icon_user.png" />
+    <Content Include="themes\id_1\images\icon_username.png" />
+    <Content Include="themes\id_1\images\icon_user_arrow.png" />
+    <Content Include="themes\id_1\images\icon_view.png" />
+    <Content Include="themes\id_1\images\icon_view_lg.png" />
+    <Content Include="themes\id_1\images\icon_view_task.png" />
+    <Content Include="themes\id_1\images\icon_workflow.png" />
+    <Content Include="themes\id_1\images\icon_workflow_hover.png" />
+    <Content Include="themes\id_1\images\icon_workflow_task.png" />
+    <Content Include="themes\id_1\images\icon_zip.png" />
+    <Content Include="themes\id_1\images\login_bg.jpg" />
+    <Content Include="themes\id_1\images\login_bottom_divider.png" />
+    <Content Include="themes\id_1\images\login_crack-1.png" />
+    <Content Include="themes\id_1\images\login_crack-2-1.png" />
+    <Content Include="themes\id_1\images\login_crack-2-2.png" />
+    <Content Include="themes\id_1\images\login_crack-3-1.png" />
+    <Content Include="themes\id_1\images\login_crack-3-2.png" />
+    <Content Include="themes\id_1\images\login_crack-4.png" />
+    <Content Include="themes\id_1\images\login_divider.png" />
+    <Content Include="themes\id_1\images\logo_header.png" />
+    <Content Include="themes\id_1\images\logo_login.png" />
+    <Content Include="themes\id_1\images\logo_login_footer.png" />
+    <Content Include="themes\id_1\images\nav_bg.png" />
+    <Content Include="themes\id_1\images\nav_bg_2.png" />
+    <Content Include="themes\id_1\images\nav_bg_old.png" />
+    <Content Include="themes\id_1\images\nav_divider.jpg" />
+    <Content Include="themes\id_1\images\overlay_divider.jpg" />
+    <Content Include="themes\id_1\images\overlay_text_divder.jpg" />
+    <Content Include="themes\id_1\images\overlay_text_divider.jpg" />
+    <Content Include="themes\id_1\images\recentadded.png" />
+    <Content Include="themes\id_1\images\right_bar_divider.png" />
+    <Content Include="themes\id_1\images\tag_cust_sort.png" />
+    <Content Include="themes\id_1\images\timer_blink.png" />
+    <Content Include="themes\id_1\images\timer_off.png" />
+    <Content Include="themes\id_1\images\timer_on.png" />
+    <Content Include="themes\id_1\images\timesheet_dropdown_divider_arrow_only.png" />
+    <Content Include="themes\id_1\images\timesheet_dropdown_divider_arrow_up.png" />
+    <Content Include="themes\id_1\images\timesheet_dropdown_divider_line_only.png" />
+    <Content Include="TimesheetManager.Master" />
+    <Content Include="login.Master" />
+    <Content Include="BM_DataClasses.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>BM_DataClasses1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="login.aspx" />
+    <Content Include="logout.aspx" />
+    <Content Include="timesheets.aspx" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BM_DataClasses.designer.cs" />
+    <Compile Include="BM_DataClasses1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BM_DataClasses.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="classes\company.cs" />
+    <Compile Include="classes\globalVariables.cs" />
+    <Compile Include="classes\module.cs" />
+    <Compile Include="classes\projects.cs" />
+    <Compile Include="classes\task.cs" />
+    <Compile Include="classes\user.cs" />
+    <Compile Include="classes\userProfile.cs" />
+    <Compile Include="classes\customer.cs" />
+    <Compile Include="classes\include.cs" />
+    <Compile Include="classes\timesheet.cs" />
+    <Compile Include="classes\timesheetCategory.cs" />
+    <Compile Include="login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="login.Master.cs">
+      <DependentUpon>login.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login.Master.designer.cs">
+      <DependentUpon>login.Master</DependentUpon>
+    </Compile>
+    <Compile Include="logout.aspx.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logout.aspx.designer.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TimesheetManager.Master.cs">
+      <DependentUpon>TimesheetManager.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TimesheetManager.Master.designer.cs">
+      <DependentUpon>TimesheetManager.Master</DependentUpon>
+    </Compile>
+    <Compile Include="timesheets.aspx.cs">
+      <DependentUpon>timesheets.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="timesheets.aspx.designer.cs">
+      <DependentUpon>timesheets.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BM_DataClasses.dbml.layout">
+      <DependentUpon>BM_DataClasses.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="themes\id_1\js\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>63841</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:63841/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

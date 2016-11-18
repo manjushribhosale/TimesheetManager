@@ -1,0 +1,226 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="~/TimesheetManager.Master.cs" Inherits="TimesheetManager.TimesheetManager" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server"> 
+    <title><%= Session["companyPageTitle"] %></title>
+
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery-migrate-1.0.0.js"></script>
+    <script type="text/javascript" src="js/jquery.colorbox.js"></script>
+    <script type="text/javascript" src="js/jquery.alerts.js"></script>
+    <script type="text/javascript" src="js/jquery.timer.js"></script>
+    <script type="text/javascript" src="js/functions.js"></script>
+
+
+    <link href="css/jAlert.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/calendar/jquery-ui-calendar.custom.css" type="text/css"/>
+
+    <%= Session["stylesheetLink"] %>
+    <%= Session["javascriptLink"] %>
+    <link rel="icon" type="image/png" href="<%= HttpContext.Current.Session["imageSource"] %>/favicon.ico" />
+
+    <script type="text/javascript">
+        // **************************************************************************
+        // START / STOP TIMER
+        var f = 0;
+        function startStopTime(inStartDate, inNowDate) {
+            startDate = inStartDate;
+            var a = new Date(startDate);
+            var b = new Date(inNowDate);
+            b.setMilliseconds(a.getMilliseconds());
+            var c = (b - a); // difference in milliseconds
+            var d = c.toString();
+            var intD = c;
+            //alert("test = " + d);
+            if (intD <= 0) {
+                d = '1000';
+            }
+            var e = d.substring(0, d.length - 1);
+            f = parseInt(e);
+            //alert("Milliseconds = " + f);
+            $(document).ready(function () {
+                document.getElementById('stopwatch').innerHTML = formatTime(f);
+            });
+
+            document.getElementById('<%= totalTimeTimeTackerHidden.ClientID %>').value = f;
+            $("#refreshTimerButton").click();
+        }
+        // **************************************************************************
+
+       
+
+        // **************************************************************************
+        // Common functions
+        function pad(number, length) {
+            var str = '' + number;
+            while (str.length < length) { str = '0' + str; }
+            return str;
+        }
+
+
+        function formatTime(time) {
+            var hour = parseInt(time / 360000),
+                min = parseInt(time / 6000) - (hour * 60),
+                minAlt = parseInt(time / 6000),
+                sec = parseInt(time / 100) - (minAlt * 60),
+                hundredths = pad(time - (sec * 100) - (minAlt * 6000), 2);
+            return (hour > 0 ? pad(hour, 2) : "00") + ":" + (min > 0 ? pad(min, 2) : "00") + ":" + pad(sec, 2);
+        }
+        // **************************************************************************
+
+
+        // **************************************************************************
+        /*BACK TO TOP JAVASCRIPT*/
+        $(document).ready(function () {
+            var offset = 220;
+            var duration = 500;
+            jQuery(window).scroll(function () {
+                
+                if (jQuery(this).scrollTop() > offset) {
+                    jQuery('.back-to-top').fadeIn(duration);
+                } else {
+                    jQuery('.back-to-top').fadeOut(duration);
+                }
+            });
+
+            jQuery('.back-to-top').click(function (event) {
+                event.preventDefault();
+                jQuery('html, body').animate({ scrollTop: 0 }, duration);
+                return false;
+            })
+        });
+        // **************************************************
+        
+
+        // **************************************************
+        //ONLY ALLOW FOR EITHER START STOP TIME OR HOURS AND MINUTES BY CLEARING THE OTHER FIELDS 
+        var secondsPerMinute = 60;
+        var minutesPerHour = 60;
+
+        function convertSecondsToHHMMSS(intSecondsToConvert) {
+            var hours = convertHours(intSecondsToConvert);
+            var minutes = getRemainingMinutes(intSecondsToConvert);
+            minutes = (minutes == 60) ? "00" : minutes;
+            var seconds = getRemainingSeconds(intSecondsToConvert);
+            return hours + ":" + minutes;
+        }
+
+        function convertHours(intSeconds) {
+            var minutes = convertMinutes(intSeconds);
+            var hours = Math.floor(minutes / minutesPerHour);
+            return hours;
+        }
+        function convertMinutes(intSeconds) {
+            return Math.floor(intSeconds / secondsPerMinute);
+        }
+        function getRemainingSeconds(intTotalSeconds) {
+            return (intTotalSeconds % secondsPerMinute);
+        }
+        function getRemainingMinutes(intSeconds) {
+            var intTotalMinutes = convertMinutes(intSeconds);
+            return (intTotalMinutes % minutesPerHour);
+        }
+        
+    </script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="frm" runat="server">
+        <asp:ScriptManager ID="ScriptManagerHeaderTimer" runat="server"></asp:ScriptManager>
+        <asp:HiddenField ID="totalTimeTimeTackerHidden" runat="server" />
+        <asp:HiddenField ID="timesheetCalendarHidden" value="" runat="server" />
+        <!-- BACK TO TOP -->
+        <a href="#" class="back-to-top"></a>
+        <div id="overlayLoading"><div id="overlayLoadingSpinner"></div></div>
+
+        <div id="body_wrapper" class="timer">
+            <div class="time_tracker">
+                <div id="time_tracker_data"></div>
+		    </div>
+        </div>
+
+        <div id="preload">
+	    </div>
+	    <div id="body_bg_wrapper">
+		    <div id="top_navigation">
+			    <div id="body_wrapper">
+                    <asp:Label ID="mainHeaderNavLabel" style="" runat="server" Text=""></asp:Label><!-- HEADER NAV -->
+				    <div id="nav_wrapper_right">
+                        <div id="nav_user_container">
+					        <div id="nav_divider"></div>
+					        <div id="nav_user">
+						        <div id="nav_user_day"><asp:Label ID="currentDateLabel" runat="server" Text=""></asp:Label></div>
+						        <div id="nav_user_greeting">Hello <asp:Label ID="userNameLabel" runat="server" Text=""></asp:Label>!</div>
+						        <ul class="subnav_user">
+							        <li><a href="myaccount.aspx">SETTINGS</a></li>
+							        <li><a href="contact.aspx">SUPPORT</a></li>
+                                    <li><a href="faq.aspx">FAQ</a></li>
+							        <li><a href="logout.aspx">LOG OUT</a></li>
+						        </ul>
+					        </div>
+					        <div id="nav_divider"></div>
+                        </div>
+
+
+                        <div id="nav_timesheet_link" runat="server">
+					        <div id="nav_divider"></div>
+                            <a href="timesheets.aspx">
+					            <div id="nav_timer" class="timer" title="TimeSheet"></div>
+                            </a>
+                        </div> 
+				    </div>
+			    </div>
+		    </div>
+		    <div id="sub_header">
+			    <div id="body_wrapper">
+				    <div id="header_logo" style="float:left;"></div>
+			    
+                    <div style="display:none;"><input type="button" id="refreshTimerButton" onclick="TimeTracker.resetStopwatch(); return false;"/></div>
+                    <div runat="server" id="nav_timer_container" style="display:none;" >
+                        <div id="TT_Wrapper" runat="server">
+                            <div id="TT_descriptionWrapper">
+                                <asp:HyperLink class="bm-sub-timer timer-tracker-left" ID="timeTrackLink" runat="server">
+				                    <div id="time_tracker_task">
+					                    TASK #: <asp:Label ID="taskIDLabel" runat="server" Text=""></asp:Label>:  
+					                    <asp:Label ID="taskTitleLabel" runat="server" Text=""></asp:Label>
+				                    </div>
+                                    <div class="TS_Dropdown_selected_arrow"><img src="images/icon_tt_link.png" alt="" /></div>
+                                </asp:HyperLink>
+                            </div>
+                            <div id="TT_TimeWrapper">
+                                <div id="stopwatch" class="time_tracker_time"></div>
+                            </div>
+                            <div id="submitTimeTrackerButton">STOP</div>
+                        </div>
+                    </div> 
+                </div>
+		    </div>
+            <div id="overlay"></div>
+            
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                <!-- MAIN CONTENT PLACEHOLDER -->
+            </asp:ContentPlaceHolder>
+            
+            <div id="bottom_footer">
+			    <div id="body_wrapper">
+				    <div id="footer_wrapper_left">
+                        <asp:Label ID="mainFooterNavLabel" runat="server" Text=""></asp:Label><!-- FOOTER NAV -->
+				    </div>
+				    <div id="footer_wrapper_right">
+					    <div id="copyright_info">
+						    Task & Timesheet Manager v1.0<br/>
+						    Copyright ©<asp:Label ID="yearLabel" runat="server" Text=""></asp:Label> All Rights Reserved.
+					    </div>
+					    <div id="footer_logo"></div>
+					    <div id="footer_divider"></div>
+                        <asp:Label ID="timeTrackerJavascriptLabel" runat="server" Text=""></asp:Label>
+				    </div>
+			    </div>
+		    </div>
+	    </div>
+    </form>
+</body>
+</html>

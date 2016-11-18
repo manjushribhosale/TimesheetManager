@@ -1,0 +1,65 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="login.master.cs" Inherits="TimesheetManager.login" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= Session["companyPageTitle"] %></title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="CACHE-CONTROL" content="NO-CACHE" />
+    <meta http-equiv="PRAGMA" content="NO-CACHE" />
+
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic' rel='stylesheet' type='text/css'/>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,900,700italic,700,500italic,500,900italic' rel='stylesheet' type='text/css'/>
+   
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery.autocomplete.js"></script>
+    <script type="text/javascript" src="js/jquery.colorbox.js"></script>
+    <script type="text/javascript" src="js/jquery.ui.datepicker.js"></script>
+    <script type="text/javascript" src="js/jquery.alerts.js"></script>
+    <script type="text/javascript" src="js/jquery.validationEngine-en.js"></script>
+    <script type="text/javascript" src="js/jquery.validationEngine.js"></script>
+    <script type="text/javascript" src="js/jQueryRotate.2.2.js"></script>
+    <script type="text/javascript" src="js/jquery.ibutton.js"></script>
+    <script type="text/javascript" src="js/jquery.accordion.js"></script>
+    <script type="text/javascript" src="js/jquery.ui.core.js"></script>
+    <script type="text/javascript" src="js/jquery.ui.widget.js"></script>
+    <script type="text/javascript" src="js/jquery.timer.js"></script>
+    <script type="text/javascript" src="js/jquery.pajinate.js"></script>
+    <script type="text/javascript" src="js/jquery.animate-bg.js"></script>
+    <script type="text/javascript" src="js/functions.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+
+    <link href="css/jAlert.css" rel="stylesheet" />
+    <link href="css/autocomplete_stylesheet.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/calendar/jquery-ui-calendar.custom.css" type="text/css"/>
+
+    <%= Session["stylesheetLink"] %>
+    <%= Session["javascriptLink"] %>
+    <%--<link rel="icon" type="image/png" href="<%= HttpContext.Current.Session["imageSource"] %>/favicon.ico" />--%>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="login-bg">
+    <form id="frm" runat="server">
+    <div id="preload">
+	</div>
+
+    <div id="login_bg_wrapper">
+		<div id="body_wrapper">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+            </asp:ContentPlaceHolder>
+
+			<div id="login_footer">
+				Task & Timesheet Manager v1.0<br />
+				Copyright ©<asp:Label ID="yearLabel" runat="server" Text=""></asp:Label> All Rights Reserved.
+			</div>
+		</div>
+	</div>
+    </form>
+</body>
+</html>

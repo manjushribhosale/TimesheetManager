@@ -1,0 +1,6 @@
+c:\users\bhaskar\documents\visual studio 2013\Projects\TimesheetManager\TimesheetManager\obj\Debug\TimesheetManager.csprojResolveAssemblyReference.cache
+C:\Users\Bhaskar\Documents\Visual Studio 2013\Projects\TimesheetManager\TimesheetManager\bin\TimesheetManager.dll.config
+C:\Users\Bhaskar\Documents\Visual Studio 2013\Projects\TimesheetManager\TimesheetManager\bin\TimesheetManager.dll
+C:\Users\Bhaskar\Documents\Visual Studio 2013\Projects\TimesheetManager\TimesheetManager\bin\TimesheetManager.pdb
+C:\Users\Bhaskar\Documents\Visual Studio 2013\Projects\TimesheetManager\TimesheetManager\obj\Debug\TimesheetManager.dll
+C:\Users\Bhaskar\Documents\Visual Studio 2013\Projects\TimesheetManager\TimesheetManager\obj\Debug\TimesheetManager.pdb

@@ -1,0 +1,983 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Web_Task_Manager" Class="BM_DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=BHASKAR-PC\SQLEXPRESS;Initial Catalog=Web_Task_Manager;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="Web_Task_ManagerConnectionString1" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.usp_delete_user_profile" Method="usp_delete_user_profile">
+    <Parameter Name="puserID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="puserProfileID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.usp_get_active_time_tracker" Method="usp_get_active_time_tracker">
+    <Parameter Name="userID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_get_active_time_trackerResult">
+      <Column Name="time_trackerID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="taskID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="userID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="start_datetime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="end_datetime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="total_hh" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="total_mm" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="manual_start_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TotalMinutes" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TotalHours" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_get_company_modules" Method="usp_get_company_modules">
+    <Parameter Name="pcompanyId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_get_company_modulesResult">
+      <Column Name="companyID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="moduleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="moduleName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="moduleDescription" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="active" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_get_customer" Method="usp_get_customer">
+    <Parameter Name="pcompanyID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pcustomerID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pactive" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_get_customerResult">
+      <Column Name="customerID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="companyID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="customerName" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="customerCode" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="active" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="entryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_get_department_user" Method="usp_get_department_user">
+    <Parameter Name="pdepartmentID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_get_department_userResult">
+      <Column Name="firstName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="lastName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="userID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="userName" Type="System.String" DbType="VarChar(201) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_get_permission_groups" Method="usp_get_permission_groups">
+    <Parameter Name="ppermgroupID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_get_permission_groupsResult">
+      <Column Name="permGroupID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="companyID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="permGroupName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="permGroupDescription" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="active" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="entryDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_get_project_departments" Method="usp_get_project_departments">
+    <Parameter Name="projectID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="companyID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_get_project_departmentsResult">
+      <Column Name="departmentID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="departmentName" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="projectID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="projectOwnerUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_get_projects_department" Method="usp_get_projects_department">
+    <Parameter Name="departmentID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="projectID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_get_projects_departmentResult">
+      <Column Name="departmentID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="projectID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="projectName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="projectOwnerUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="projectStartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="projectEndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="active" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="entryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="project_projectOwner" Type="System.String" DbType="VarChar(41)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_get_user_profile" Method="usp_get_user_profile">
+    <Parameter Name="pprofileID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="puserID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_get_user_profileResult">
+      <Column Name="userProfileID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="userID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="profileID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="profileValue" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_increment_failed_attempt" Method="usp_increment_failed_attempt">
+    <Parameter Name="pusername" Type="System.String" DbType="VarChar(100)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.usp_insert_time_tracker" Method="usp_insert_time_tracker">
+    <Parameter Name="ptaskID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="puserID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pstart_datetime" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.usp_insert_user_profile" Method="usp_insert_user_profile">
+    <Parameter Name="puserID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pprofileID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pprofileValue" Type="System.String" DbType="VarChar(100)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.usp_list_company_subject" Method="usp_list_company_subject">
+    <Parameter Name="pcompanyID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="psubjectID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_list_company_subjectResult">
+      <Column Name="companyID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="subjectID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="subjectText" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="emailAddress" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_list_navigation_menu" Method="usp_list_navigation_menu">
+    <Parameter Name="pcompanyID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_list_navigation_menuResult">
+      <Column Name="navID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="companyID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="navTitle" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="navPage" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="moduleName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="moduleID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="active" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_list_permission_groups" Method="usp_list_permission_groups">
+    <Parameter Name="pcompanyID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_list_permission_groupsResult">
+      <Column Name="permGroupID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="companyID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="permGroupName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="permGroupDescription" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="active" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="entryDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_lock_user" Method="usp_lock_user">
+    <Parameter Name="pusername" Type="System.String" DbType="VarChar(100)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.usp_update_time_tracker" Method="usp_update_time_tracker">
+    <Parameter Name="ptimeTracker_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pEndTime" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.usp_get_projects" Method="usp_get_projects">
+    <Parameter Name="projectID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_get_projectsResult">
+      <Column Name="projectID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="projectName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="projectOwnerUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="projectStartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="projectEndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="active" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="entryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_get_time_tracker" Method="usp_get_time_tracker">
+    <Parameter Name="ptaskID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_get_time_trackerResult">
+      <Column Name="time_trackerID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="taskID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="userID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="start_datetime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="end_datetime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="total_hh" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="total_mm" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="user_name" Type="System.String" DbType="VarChar(201) NOT NULL" CanBeNull="false" />
+      <Column Name="manual_start_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_insert_time_tracker_manual" Method="usp_insert_time_tracker_manual">
+    <Parameter Name="ptaskID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="puserID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ptotal_hh" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ptotal_mm" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pmanualDate" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.usp_update_time_tracker_manual" Method="usp_update_time_tracker_manual">
+    <Parameter Name="ptimeTracker_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pHours" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pMinutes" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.usp_get_project_stats" Method="usp_get_project_stats">
+    <Parameter Name="pprojectID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_get_project_statsResult">
+      <Column Name="projectID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="projectName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="projectStartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="projectEndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OwnerName" Type="System.String" DbType="VarChar(201) NOT NULL" CanBeNull="false" />
+      <Column Name="TotalTask" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TotalCompleted" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TotalInProgress" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TotalIncomplete" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DueToday" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[DueThis Week]" Member="DueThis_Week" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DueNextWeek" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="totalRevenue" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="totalWaivedRevenue" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="totalHours" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="OverDue" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TotalDepartments" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="totalUsers" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_get_requestor_tasks" Method="usp_get_requestor_tasks">
+    <Parameter Name="pcompanyID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="prequestorID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="puserID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ppriority" Type="System.String" DbType="VarChar(6)" />
+    <Parameter Name="pstatus" Type="System.String" DbType="VarChar(18)" />
+    <Parameter Name="pcustomerID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_get_requestor_tasksResult">
+      <Column Name="assigned_username" Type="System.String" DbType="VarChar(201)" CanBeNull="true" />
+      <Column Name="priority" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="taskID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="taskTitle" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="statusName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="dueDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="requestorUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="assignedUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="startDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="urgent" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="workflowID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="taskStatusID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="departmentName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="customerName" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="taskDescription" Type="System.String" DbType="VarChar(5000)" CanBeNull="true" />
+      <Column Name="typeName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="assignedBy" Type="System.String" DbType="VarChar(201)" CanBeNull="true" />
+      <Column Name="entryDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="requestedby" Type="System.String" DbType="VarChar(201) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_get_department" Method="usp_get_department">
+    <Parameter Name="pdepartmentID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_get_departmentResult">
+      <Column Name="departmentID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="companyID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="departmentName" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="active" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="entryDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="departmentEmail" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_insert_department" Method="usp_insert_department">
+    <Parameter Name="pcompanyID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pdepartmentName" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="pactive" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pdepartmentEmail" Type="System.String" DbType="VarChar(500)" />
+    <ElementType Name="usp_insert_departmentResult">
+      <Column Name="departmentID" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_update_department" Method="usp_update_department">
+    <Parameter Name="pdepartmentID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pdepartmentName" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="pactive" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pdepartmentEmail" Type="System.String" DbType="VarChar(500)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.usp_update_permission_groups" Method="usp_update_permission_groups">
+    <Parameter Name="ppermGroupID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ppermGroupName" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="ppermGroupDescription" Type="System.String" DbType="VarChar(500)" />
+    <Parameter Name="pactive" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.usp_update_failedLoginAttempt" Method="usp_update_failedLoginAttempt">
+    <Parameter Name="puserID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.usp_list_time_sheet_category" Method="usp_list_time_sheet_category">
+    <Parameter Name="pdepartmentID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_list_time_sheet_categoryResult">
+      <Column Name="timeSheetCategoryID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="departmentID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="timeSheetCategory" Type="System.String" DbType="VarChar(75) NOT NULL" CanBeNull="false" />
+      <Column Name="timeSheetCategoryProductive" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="timeSheetCategoryProductiveRate" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="timeSheetCategoryProductiveExclude" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="timeSheetCategoryActive" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_delete_time_sheet" Method="usp_delete_time_sheet">
+    <Parameter Name="ptimeSheetID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.usp_update_password" Method="usp_update_password">
+    <Parameter Name="puserid" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pNewPassword" Type="System.String" DbType="VarChar(100)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.usp_get_time_sheet" Method="usp_get_time_sheet">
+    <Parameter Name="timeSheetID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_get_time_sheetResult">
+      <Column Name="timeSheetID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="userID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[User]" Member="User" Type="System.String" DbType="VarChar(201) NOT NULL" CanBeNull="false" />
+      <Column Name="timeSheetCategoryID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="departmentID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="timeSheetCategory" Type="System.String" DbType="VarChar(75) NOT NULL" CanBeNull="false" />
+      <Column Name="timeSheetCategoryProductive" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="timeSheetCategoryProductiveRate" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="timeSheetCategoryProductiveExclude" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="timeSheetCategoryActive" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="timeSheetStartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="timeSheetEndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="timeSheetHours" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetMinutes" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetDescription" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="timeSheetMondayClose" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetTuesdayClose" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetWednesdayClose" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetThursdayClose" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetFridayClose" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetSaturdayClose" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetSundayClose" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetReporting" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetCloseOutDays" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetRounding" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_list_time_sheet" Method="usp_list_time_sheet">
+    <Parameter Name="puserID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pclosedRecord" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pBegDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="pEndDate" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="usp_list_time_sheetResult">
+      <Column Name="timeSheetID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="userID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="timeSheetCategoryID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="customerID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetStartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="timeSheetEndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="timeSheetHours" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetMinutes" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetDescription" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="projectID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetCategory" Type="System.String" DbType="VarChar(75) NOT NULL" CanBeNull="false" />
+      <Column Name="customerName" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_insert_time_sheet" Method="usp_insert_time_sheet">
+    <Parameter Name="puserID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ptimeSheetCategoryID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pcustomerID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ptimeSheetStartDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="ptimeSheetEndDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="ptimeSheetHours" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ptimeSheetMinutes" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ptimeSheetDescription" Type="System.String" DbType="VarChar(1000)" />
+    <Parameter Name="pprojectID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.usp_get_time_sheet_tasks" Method="usp_get_time_sheet_tasks">
+    <Parameter Name="puserID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pDate" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="usp_get_time_sheet_tasksResult">
+      <Column Name="taskID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="userID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="total_hh" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="total_mm" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetRounding" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_get_days_to_close" Method="usp_get_days_to_close">
+    <Parameter Name="puserID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_get_days_to_closeResult">
+      <Column Name="DayToClose" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_update_time_sheet" Method="usp_update_time_sheet">
+    <Parameter Name="ptimeSheetID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="puserID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ptimeSheetCategoryID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pcustomerID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ptimeSheetStartDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="ptimeSheetEndDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="ptimeSheetHours" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ptimeSheetMinutes" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ptimeSheetDescription" Type="System.String" DbType="VarChar(1000)" />
+    <Parameter Name="pprojectID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.usp_get_user_time_sheet_defaults" Method="usp_get_user_time_sheet_defaults">
+    <Parameter Name="puserID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pdate" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="usp_get_user_time_sheet_defaultsResult">
+      <Column Name="userID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="permGroupID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="departmentID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="username" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="firstName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="lastName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="emailAddress" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="failedLoginAttempt" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="locked" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="userActive" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="passwordUpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="entryDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="departmentAdmin" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="companyAdmin" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="companyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetReporting" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetCloseOutDays" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetRounding" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetMondayClose" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetTuesdayClose" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetWednesdayClose" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetThursdayClose" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetFridayClose" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetSaturdayClose" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetSundayClose" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetStartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="TimeSheetCloseHour" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_insert_time_sheet_closeout_date" Method="usp_insert_time_sheet_closeout_date">
+    <Parameter Name="pUserID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pDate" Type="System.DateTime" DbType="Date" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.usp_get_users_days_to_close_count" Method="usp_get_users_days_to_close_count">
+    <Parameter Name="puserID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_get_users_days_to_close_countResult">
+      <Column Name="" Member="Column1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CloseDayCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RequiredClose" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_insert_category" Method="usp_insert_category">
+    <Parameter Name="pcategoryName" Type="System.String" DbType="VarChar(250)" />
+    <Parameter Name="pmenuID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pcategoryDescription" Type="System.String" DbType="VarChar(2000)" />
+    <Parameter Name="pparentCategoryID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pentryUserID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pcompanyID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_insert_categoryResult">
+      <Column Name="categoryID" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_update_category" Method="usp_update_category">
+    <Parameter Name="pcategoryID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pmenuID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pcategoryName" Type="System.String" DbType="VarChar(250)" />
+    <Parameter Name="pcategoryDescription" Type="System.String" DbType="VarChar(2000)" />
+    <Parameter Name="pparentCategoryID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pactive" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pupdatedUserID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.usp_list_category" Method="usp_list_category">
+    <Parameter Name="pcompanyID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pactive" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_list_categoryResult">
+      <Column Name="categoryID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="menuID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="categoryName" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="categoryDescription" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="parentCategoryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="active" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="entryUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="entryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="updatedUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="updatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="companyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_get_category" Method="usp_get_category">
+    <Parameter Name="pcategoryID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_get_categoryResult">
+      <Column Name="categoryID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="menuID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="categoryName" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="categoryDescription" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="parentCategoryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="active" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="entryUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="entryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="updatedUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="updatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="companyID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_get_menus_configuration" Method="usp_get_menus_configuration">
+    <Parameter Name="pmenuID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_get_menus_configurationResult">
+      <Column Name="configurationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="menuID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="elementAttributes" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="visible" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="required" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="entryUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="entryDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="updatedUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="updatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_get_menu_details" Method="usp_get_menu_details">
+    <Parameter Name="pmenuID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="plocationGroupID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="psectionID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="plocationID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_get_menu_detailsResult">
+      <Column Name="sectionName" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="parentSectionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="elementName" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="elementPLU" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="elementDescription1" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="elementPrintValue1" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="elementDescription2" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="elementPrintValue2" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="elementDescription3" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="elementPrintValue3" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="elementDescription4" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="elementPrintValue4" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="elementDescription5" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="elementPrintValue5" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="elementDescription6" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="elementPrintValue6" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="elementVintage" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="elementCalories1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="elementCalories2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="elementCalories3" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="elementCalories4" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="elementCalories5" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="elementCalories6" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="elementPriceName1" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="elementPriceName2" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="elementPriceName3" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="elementPriceName4" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="elementPriceName5" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="elementPriceName6" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="elementPLU1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="elementPLU2" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="elementPLU3" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="elementPLU4" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="elementPLU5" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="elementPLU6" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="elementAttributeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="elementPrice1" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="elementPrice2" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="elementPrice3" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="elementPrice4" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="elementPrice5" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="elementPrice6" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Num_Locations" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="elementID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="sectionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="menuID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="locationElementAttributeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="locationGroupID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_insert_category_element" Method="usp_insert_category_element">
+    <Parameter Name="pcategoryID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pelementID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pentryUserID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.usp_get_custom_navigation" Method="usp_get_custom_navigation">
+    <Parameter Name="pcompanyID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_get_custom_navigationResult">
+      <Column Name="customNavigationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="companyID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="customNavigationTitle" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="customNavigationPage" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="customNavigationSort" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="customNavigationActive" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_get_faq" Method="usp_get_faq">
+    <Parameter Name="pCompanyID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_get_faqResult">
+      <Column Name="faqID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="faqQuestion" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="faqAnswer" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="active" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="entryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="updateDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="companyID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="faqCompanySort" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_get_company" Method="usp_get_company">
+    <Parameter Name="pcompanyID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pcompanyURL" Type="System.String" DbType="VarChar(500)" />
+    <Parameter Name="pcompanyActive" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_get_companyResult">
+      <Column Name="companyID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="companyName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="companyShortName" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="companyPageTitle" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="companyEmailAddress" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="companyPhoneNumber" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="companyActive" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="companyURL" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="companyFolderName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="companyStylesheet" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="companyJavascript" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="defaultPermGroupID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="defaultDepartmentID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="passwordExpirationDays" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="defaultPageCopy" Type="System.String" DbType="VarChar(5000)" CanBeNull="true" />
+      <Column Name="contactPageCopy" Type="System.String" DbType="VarChar(5000)" CanBeNull="true" />
+      <Column Name="lightboxPageCopy" Type="System.String" DbType="VarChar(5000)" CanBeNull="true" />
+      <Column Name="documentsPageCopy" Type="System.String" DbType="VarChar(5000)" CanBeNull="true" />
+      <Column Name="settingsPageCopy" Type="System.String" DbType="VarChar(5000)" CanBeNull="true" />
+      <Column Name="faqPageCopy" Type="System.String" DbType="VarChar(5000)" CanBeNull="true" />
+      <Column Name="taskSearchPageCopy" Type="System.String" DbType="VarChar(5000)" CanBeNull="true" />
+      <Column Name="assetSearchPageCopy" Type="System.String" DbType="VarChar(5000)" CanBeNull="true" />
+      <Column Name="entryDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="userEmail" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="customerID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_get_total_hours_by_category" Method="usp_get_total_hours_by_category">
+    <Parameter Name="pdepartmentid" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pBegDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="pEndDate" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="usp_get_total_hours_by_categoryResult">
+      <Column Name="Category" Type="System.String" DbType="VarChar(75) NOT NULL" CanBeNull="false" />
+      <Column Name="TOTAL_HOURS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="sortOrder" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_get_total_time_sheet_hours" Method="usp_get_total_time_sheet_hours">
+    <Parameter Name="pdepartmentID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pBegDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="pEndDate" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="usp_get_total_time_sheet_hoursResult">
+      <Column Name="BegDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Totalhours" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="AvgHoursPerWeek" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="NormalTime" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="time_type" Type="System.String" DbType="VarChar(6) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_get_upcoming_PTO" Method="usp_get_upcoming_PTO">
+    <Parameter Name="pdepartmentID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_get_upcoming_PTOResult">
+      <Column Name="timeSheetID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="userID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="userName" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="timeSheetStartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="timeSheetEndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TotalMinutes" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NumDays" Type="System.String" DbType="VarChar(4) NOT NULL" CanBeNull="false" />
+      <Column Name="daterange" Type="System.String" DbType="VarChar(14)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_get_billable" Method="usp_get_billable">
+    <Parameter Name="pdepartmentID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pBegDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="pEndDate" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="usp_get_billableResult">
+      <Column Name="userID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="User_name" Type="System.String" DbType="VarChar(103)" CanBeNull="true" />
+      <Column Name="Billable" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NonBilliable" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Billable_Percent" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BegDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_get_utilization" Method="usp_get_utilization">
+    <Parameter Name="pdepartmentID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pBegDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="pEndDate" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="usp_get_utilizationResult">
+      <Column Name="TOTAL_MINUTES" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UTILIZATION_MINUTES" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UTILIZATION" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="USERNAME" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="NumWorkDays" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_get_user" Method="usp_get_user">
+    <Parameter Name="puserName" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="ppassword" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="puserID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pcompanyID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pActive" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_get_userResult">
+      <Column Name="userID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="permGroupID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="departmentID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="username" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="firstName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="lastName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="emailAddress" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="failedLoginAttempt" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="locked" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="userActive" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="passwordUpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="entryDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="departmentAdmin" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="companyAdmin" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="companyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetReporting" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetCloseOutDays" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetRounding" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetMondayClose" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetTuesdayClose" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetWednesdayClose" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetThursdayClose" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetFridayClose" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetSaturdayClose" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetSundayClose" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetStartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="userTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="vdmAccess" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="locationProfileAdmin" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_insert_user" Method="usp_insert_user">
+    <Parameter Name="ppermGroupID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pdepartmentID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pusername" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="ppassword" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="pfirstName" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="plastName" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="pemailAddress" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="puserActive" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pdepartmentAdmin" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pcompanyID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ptimeSheetReporting" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ptimeSheetCloseOutDays" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ptimeSheetRounding" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ptimeSheetMondayClose" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ptimeSheetTuesdayClose" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ptimeSheetWednesdayClose" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ptimeSheetThursdayClose" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ptimeSheetFridayClose" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ptimeSheetSaturdayClose" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ptimeSheetSundayClose" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ptimeSheetStartDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="puserTypeID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pvdmAccess" Type="System.Int32" DbType="Int" />
+    <Parameter Name="plocationProfileAdmin" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_insert_userResult">
+      <Column Name="userID" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_update_user" Method="usp_update_user">
+    <Parameter Name="puserID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ppermGroupID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pdepartmentID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pusername" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="ppassword" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="pfirstName" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="plastName" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="pemailAddress" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="puserActive" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pfailedLoginAttempt" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pLocked" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ppasswordUpdatedDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="pdepartmentAdmin" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ptimeSheetReporting" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ptimeSheetCloseOutDays" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ptimeSheetRounding" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ptimeSheetMondayClose" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ptimeSheetTuesdayClose" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ptimeSheetWednesdayClose" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ptimeSheetThursdayClose" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ptimeSheetFridayClose" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ptimeSheetSaturdayClose" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ptimeSheetSundayClose" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ptimeSheetStartDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="puserTypeID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pvdmAccess" Type="System.Int32" DbType="Int" />
+    <Parameter Name="plocationProfileAdmin" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.usp_list_company" Method="usp_list_company">
+    <ElementType Name="usp_list_companyResult">
+      <Column Name="companyID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="companyName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="companyShortName" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="companyPageTitle" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="companyEmailAddress" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="companyPhoneNumber" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="companyActive" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="companyURL" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="companyFolderName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="companyStylesheet" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="companyJavascript" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="defaultPermGroupID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="defaultDepartmentID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="passwordExpirationDays" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="defaultPageCopy" Type="System.String" DbType="VarChar(5000)" CanBeNull="true" />
+      <Column Name="contactPageCopy" Type="System.String" DbType="VarChar(5000)" CanBeNull="true" />
+      <Column Name="lightboxPageCopy" Type="System.String" DbType="VarChar(5000)" CanBeNull="true" />
+      <Column Name="documentsPageCopy" Type="System.String" DbType="VarChar(5000)" CanBeNull="true" />
+      <Column Name="settingsPageCopy" Type="System.String" DbType="VarChar(5000)" CanBeNull="true" />
+      <Column Name="faqPageCopy" Type="System.String" DbType="VarChar(5000)" CanBeNull="true" />
+      <Column Name="taskSearchPageCopy" Type="System.String" DbType="VarChar(5000)" CanBeNull="true" />
+      <Column Name="assetSearchPageCopy" Type="System.String" DbType="VarChar(5000)" CanBeNull="true" />
+      <Column Name="entryDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="userEmail" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="customerID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_list_country" Method="usp_list_country">
+    <Parameter Name="pCountryName" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="usp_list_countryResult">
+      <Column Name="countryID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="countryName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="countryAbbreviation" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_get_email_template" Method="usp_get_email_template">
+    <Parameter Name="pEmailTemplateID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pActive" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_get_email_templateResult">
+      <Column Name="emailTemplateID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="companyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="emailBodyText" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="emailSubject" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="active" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_list_email_template" Method="usp_list_email_template">
+    <Parameter Name="pCompanyID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pActive" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_list_email_templateResult">
+      <Column Name="emailTemplateID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="emailTemplateName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="companyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="emailBodyText" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="emailSubject" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="active" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_get_menus" Method="usp_get_menus">
+    <Parameter Name="pcompanyID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pmenuID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_get_menusResult">
+      <Column Name="menuID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="companyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="menuName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="menuDescription" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="helpFileName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="active" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="entryUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="entryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="updatedUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="updatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_get_hours_activity" Method="usp_get_hours_activity">
+    <Parameter Name="pdepartmentID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pBegDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="pEndDate" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="usp_get_hours_activityResult">
+      <Column Name="Name" Type="System.String" DbType="VarChar(103)" CanBeNull="true" />
+      <Column Name="timeTracked" Type="System.String" DbType="VarChar(56)" CanBeNull="true" />
+      <Column Name="tasks" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="userID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_insert_document" Method="usp_insert_document">
+    <Parameter Name="pcompanyID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ptitle" Type="System.String" DbType="VarChar(250)" />
+    <Parameter Name="pdocumentDescription" Type="System.String" DbType="VarChar(2500)" />
+    <Parameter Name="pownerUserID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pauthorUserID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pactive" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pmultiFormat" Type="System.Int32" DbType="Int" />
+    <Parameter Name="psocialMedia" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pvariableDocument" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pentryUserID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="psearchWizard" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_insert_documentResult">
+      <Column Name="documentID" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_get_userID" Method="usp_get_userID">
+    <Parameter Name="pusername" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="usp_get_userIDResult">
+      <Column Name="userID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="permGroupID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="departmentID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="username" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="firstName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="lastName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="emailAddress" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="failedLoginAttempt" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="locked" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="userActive" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="passwordUpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="entryDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="departmentAdmin" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="companyAdmin" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="companyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetReporting" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetCloseOutDays" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetRounding" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetMondayClose" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetTuesdayClose" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetWednesdayClose" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetThursdayClose" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetFridayClose" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetSaturdayClose" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetSundayClose" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timeSheetStartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="userTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="vdmAccess" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="locationProfileAdmin" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="employeeID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_get_task" Method="usp_get_task">
+    <Parameter Name="ptaskID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pdepartmentID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_get_taskResult">
+      <Column Name="taskID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="taskTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="workflowID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="workflowStepID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="workflowPermGroupID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="workflowDocumentID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="taskStatusID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="departmentID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="companyID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="taskTitle" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="taskDescription" Type="System.String" DbType="VarChar(5000)" CanBeNull="true" />
+      <Column Name="requestorUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="assignedUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="assignedByUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="startDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="dueDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="urgent" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="resolution" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="resolution_hours" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="priority" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="entryDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="projectID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="active" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="originalDueDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="insufficientInfo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="customerID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="revenueWaived" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="totalRevenue" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="totalSLAhrs" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="invoicedPrice" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="quoteTime" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="quotePrice" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="invoiced" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="tmpTaskID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="requestorName" Type="System.String" DbType="VarChar(201)" CanBeNull="true" />
+      <Column Name="assignedName" Type="System.String" DbType="VarChar(201)" CanBeNull="true" />
+      <Column Name="customerName" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="billCost" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="urgentCost" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="costCode" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="assignedbyName" Type="System.String" DbType="VarChar(201)" CanBeNull="true" />
+      <Column Name="statusName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="completed" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>
